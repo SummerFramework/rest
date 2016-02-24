@@ -1,0 +1,30 @@
+group 'com.rbarbioni'
+version '1.0-SNAPSHOT'
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'maven'
+    apply plugin: 'idea'
+
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url "https://repo.spring.io/libs-release" }
+        maven { url "http://repo.spring.io/release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://rbarbioni.com.br/artifactory/libs-snapshot-local" }
+        maven { url "http://rbarbioni.com.br/artifactory/libs-release-local" }
+        maven { url "http://repository.jspresso.org/maven2" }
+        maven { url "http://repository.primefaces.org" }
+        maven { url "https://github.com/slorber/gcm-server-repository/raw/master/releases/" }
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+}
