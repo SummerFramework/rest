@@ -6,7 +6,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'war'
 //apply plugin: 'maven-publish'
 
-group = "com.rbarbioni"
+group = "com.sf.rest.api"
 archivesBaseName = "spring-faster-rest-api"
 version = '1.0.0'
 
