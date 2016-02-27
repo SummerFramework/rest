@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+  <info organisation="com.sf.rest.api" module="spring-faster-rest-api" revision="1.0.0-SNAPSHOT" status="integration" publication="20160225104858">
+    <description/>
+  </info>
+  <configurations>
+    <conf name="archives" visibility="public" description="Configuration for archive artifacts."/>
+    <conf name="compile" visibility="private" description="Compile classpath for source set 'main'."/>
+    <conf name="default" visibility="public" description="Configuration for default artifacts." extends="runtime"/>
+    <conf name="providedRuntime" visibility="public"/>
+    <conf name="runtime" visibility="private" description="Runtime classpath for source set 'main'." extends="compile"/>
+    <conf name="testCompile" visibility="private" description="Compile classpath for source set 'test'." extends="compile"/>
+    <conf name="testRuntime" visibility="private" description="Runtime classpath for source set 'test'." extends="runtime,testCompile"/>
+  </configurations>
+  <publications>
+    <artifact name="spring-faster-rest-api" type="jar" ext="jar" conf="archives,runtime"/>
+  </publications>
+  <dependencies>
+    <dependency org="javax.servlet" name="javax.servlet-api" rev="3.1.0" conf="compile-&gt;default"/>
+    <dependency org="org.springframework.boot" name="spring-boot-starter" rev="" conf="compile-&gt;default"/>
+    <dependency org="org.springframework.boot" name="spring-boot-starter-data-rest" rev="" conf="compile-&gt;default"/>
+    <dependency org="org.springframework.boot" name="spring-boot-starter-data-jpa" rev="" conf="compile-&gt;default"/>
+    <dependency org="org.apache.commons" name="commons-dbcp2" rev="2.1" conf="compile-&gt;default"/>
+    <dependency org="mysql" name="mysql-connector-java" rev="5.1.36" conf="compile-&gt;default"/>
+  </dependencies>
+</ivy-module>
