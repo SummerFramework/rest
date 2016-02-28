@@ -96,6 +96,7 @@ buildNumber.properties
 /build
 /spring-faster-rest-api/build
 /spring-faster-rest-api/artifacts
+/app/app.iml
 
 /app/build
 /app/artifacts
