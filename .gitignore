@@ -13,3 +13,7 @@ hs_err_pid*
 /build
 /spring-faster-rest-api/build
 /spring-faster-rest-api/artifacts
+
+/build
+/app/build
+/app/artifacts
