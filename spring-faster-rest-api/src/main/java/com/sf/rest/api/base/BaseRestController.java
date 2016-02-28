@@ -17,10 +17,9 @@ public abstract class BaseRestController<E extends DomainEntity, VO extends Doma
 
     BaseService<E, VO> baseService;
 
-    BaseJpaRepository<E, Long> baseJpaRepository;
-
     public BaseRestController(BaseJpaRepository baseJpaRepository){
         this.baseService = new BaseService<>(baseJpaRepository);
+        this.baseService.setMessageI18nService(getMessageI18nService());
     }
 
     @RequestMapping( method = RequestMethod.GET)
@@ -57,7 +56,4 @@ public abstract class BaseRestController<E extends DomainEntity, VO extends Doma
     public void delete ( @PathVariable String uuid) throws IOException {
         this.baseService.delete(uuid);
     }
-
-
-
 }

@@ -4,32 +4,34 @@ import com.sf.rest.api.data.BaseJpaRepository;
 import com.sf.rest.api.model.DomainEntity;
 import com.sf.rest.api.model.DomainPageImpl;
 import com.sf.rest.api.model.valueobject.DomainVO;
+import com.sf.rest.api.service.MessageI18nService;
 import com.sf.rest.api.utils.ObjectMapperUtils;
 import com.sf.rest.api.utils.ReflectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by renan on 20/02/16.
  */
 
-@Service
 public class BaseService<E extends DomainEntity, VO extends DomainVO> {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(BaseService.class);
 
     BaseJpaRepository<E, Long> baseJpaRepository;
 
-    @Autowired
+    private MessageI18nService messageI18nService;
+
     public BaseService(BaseJpaRepository baseJpaRepository){
         this.baseJpaRepository = baseJpaRepository;
     }
@@ -104,7 +106,7 @@ public class BaseService<E extends DomainEntity, VO extends DomainVO> {
 
         E entityToSave;
 
-        E entity = (E) this.baseJpaRepository.findByUUID(domainVO.getUUID());
+        E entity = this.baseJpaRepository.findByUUID(domainVO.getUUID());
 
         if (entity != null){
             entityToSave = (E) ObjectMapperUtils.parse(domainVO, entity.getClass());
@@ -132,7 +134,7 @@ public class BaseService<E extends DomainEntity, VO extends DomainVO> {
     public void delete (String uuid){
         final E entity = this.baseJpaRepository.findByUUID(uuid);
         if ( entity == null){
-            throw new RuntimeException("Resource not found");
+            throw new RuntimeException(messageI18nService.get("object.not.found"));
         }
 
         this.baseJpaRepository.delete(entity);
@@ -148,7 +150,7 @@ public class BaseService<E extends DomainEntity, VO extends DomainVO> {
         for (E entity : entities) {
             if ( onlyActive ){
                 if (entity.isActive())
-                    vos.add((VO) entity.toVO());
+                    vos.add(entity.toVO());
             }else{
                 vos.add(entity.toVO());
             }
@@ -164,4 +166,8 @@ public class BaseService<E extends DomainEntity, VO extends DomainVO> {
         }
         return null;
     };
+
+    public void setMessageI18nService(MessageI18nService messageI18nService) {
+        this.messageI18nService = messageI18nService;
+    }
 }

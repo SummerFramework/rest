@@ -1,4 +1,4 @@
-package com.sf.rest.api.app;
+package com.myapp;
 
 import org.springframework.context.ApplicationContext;
 

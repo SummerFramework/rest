@@ -16,8 +16,8 @@ public class ErrorVO implements Serializable {
     @JsonProperty("message")
     private String message;
 
-    @JsonProperty("target")
-    private Object target;
+    @JsonProperty("source")
+    private Object source;
 
     @JsonProperty("errors")
     private List<ErrorMessageVO> errors;
@@ -26,10 +26,10 @@ public class ErrorVO implements Serializable {
 
     }
 
-    public ErrorVO(long statusCode, String message, Object target, List<ErrorMessageVO> errors) {
+    public ErrorVO(long statusCode, String message, Object source, List<ErrorMessageVO> errors) {
         this.statusCode = statusCode;
         this.message = message;
-        this.target = target;
+        this.source = source;
         this.errors = errors;
     }
 
@@ -54,12 +54,12 @@ public class ErrorVO implements Serializable {
         this.message = message;
     }
 
-    public Object getTarget() {
-        return target;
+    public Object getSource() {
+        return source;
     }
 
-    public void setTarget(Object target) {
-        this.target = target;
+    public void setSource(Object source) {
+        this.source = source;
     }
 
     public List<ErrorMessageVO> getErrors() {

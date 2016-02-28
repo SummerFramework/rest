@@ -1,6 +1,6 @@
-package com.sf.rest.api.app.repository;
+package com.myapp.repository;
 
-import com.sf.rest.api.app.model.Application;
+import com.myapp.model.Application;
 import com.sf.rest.api.data.BaseJpaRepository;
 
 /**

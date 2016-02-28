@@ -1,6 +1,6 @@
-package com.sf.rest.api.app.model;
+package com.myapp.model;
 
-import com.sf.rest.api.app.model.valueobject.ApplicationVO;
+import com.myapp.model.valueobject.ApplicationVO;
 import com.sf.rest.api.model.DomainEntity;
 
 import javax.persistence.Column;

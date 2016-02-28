@@ -1,4 +1,4 @@
-package com.sf.rest.api.app;
+package com.myapp;
 
 import com.sf.rest.api.data.BaseJpaRepositoryImp;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -13,10 +13,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.sql.DataSource;
+import java.util.Locale;
 
 /**
  * Created by renan on 23/02/16.
@@ -24,12 +27,11 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableAutoConfiguration
-@EnableJpaRepositories(repositoryBaseClass = BaseJpaRepositoryImp.class, basePackages={"com.sf.rest.api.app.*"})
-@ComponentScan(basePackages={"com.sf.rest.api.app.*"})
-@EntityScan(basePackages = "com.sf.rest.api.app")
+@EnableJpaRepositories(repositoryBaseClass = BaseJpaRepositoryImp.class, basePackages={"com.sf.rest.api.*","com.myapp.*"})
+@ComponentScan(basePackages={"com.sf.rest.api.*","com.myapp.*"})
+@EntityScan(basePackages = {"com.sf.rest.api.*","com.myapp.*"})
 @EnableTransactionManagement
-public class AppConfiguration {
-
+public class AppConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     private Environment env;
 
@@ -59,9 +61,16 @@ public class AppConfiguration {
         return null;
     }
 
+    @Autowired
+    public void applicationContext ( ApplicationContext applicationContext ){
+        SpringApplicationContext.setApplicationContext(applicationContext);
+    }
+
     @Bean
     public LocaleResolver localeResolver() {
-        return new CookieLocaleResolver();
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(Locale.US);
+        return slr;
     }
 
     @Bean
@@ -71,8 +80,8 @@ public class AppConfiguration {
         return lci;
     }
 
-    @Autowired
-    public void applicationContext ( ApplicationContext applicationContext ){
-        SpringApplicationContext.setApplicationContext(applicationContext);
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
     }
 }

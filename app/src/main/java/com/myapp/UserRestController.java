@@ -1,8 +1,8 @@
-package com.sf.rest.api.app;
+package com.myapp;
 
-import com.sf.rest.api.app.model.User;
-import com.sf.rest.api.app.model.valueobject.UserVO;
-import com.sf.rest.api.app.repository.UserRepository;
+import com.myapp.model.User;
+import com.myapp.model.valueobject.UserVO;
+import com.myapp.repository.UserRepository;
 import com.sf.rest.api.base.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

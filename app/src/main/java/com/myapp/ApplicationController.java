@@ -1,8 +1,8 @@
-package com.sf.rest.api.app;
+package com.myapp;
 
-import com.sf.rest.api.app.model.Application;
-import com.sf.rest.api.app.model.valueobject.ApplicationVO;
-import com.sf.rest.api.app.repository.ApplicationRepository;
+import com.myapp.model.Application;
+import com.myapp.model.valueobject.ApplicationVO;
+import com.myapp.repository.ApplicationRepository;
 import com.sf.rest.api.base.PageableController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +19,4 @@ public class ApplicationController extends PageableController<Application, Appli
     public ApplicationController(ApplicationRepository applicationRepository) {
         super(applicationRepository);
     }
-
-
 }

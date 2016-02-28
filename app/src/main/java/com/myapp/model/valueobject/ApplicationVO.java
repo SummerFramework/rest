@@ -1,4 +1,4 @@
-package com.sf.rest.api.app.model.valueobject;
+package com.myapp.model.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sf.rest.api.model.valueobject.DomainVO;
@@ -11,13 +11,13 @@ import javax.validation.constraints.Size;
  */
 public class ApplicationVO extends DomainVO {
 
-    @Size(min = 3, max = 60, message = "{USER.SIZE.VALIDATION}")
-    @NotNull(message = "package_name é obrigatório")
+    @Size(min = 3, max = 60, message = "{application.package_name.size.min.max}")
+    @NotNull(message = "{application.package_name.required}")
     @JsonProperty("package_name")
     private String packageName;
 
-    @Size(min = 3, max = 60, message = "name deve ter no mínimo 3 e máximo 60 caracteres")
-    @NotNull(message = "nome é obrigatório")
+    @Size(min = 3, max = 60, message = "{application.name.size.min.max}")
+    @NotNull(message = "application.name.required")
     @JsonProperty("name")
     private String name;
 

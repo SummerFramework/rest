@@ -1,15 +1,22 @@
-package com.sf.rest.api.app.model.valueobject;
+package com.myapp.model;
 
-import com.sf.rest.api.model.valueobject.DomainVO;
+import com.myapp.model.valueobject.UserVO;
+import com.sf.rest.api.model.DomainEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by renan on 23/02/16.
  */
-public class UserVO extends DomainVO {
+@Entity
+@Table(name = "User")
+public class User extends DomainEntity {
 
     private String name;
 
     private String email;
+
 
     public String getName() {
         return name;
@@ -25,5 +32,10 @@ public class UserVO extends DomainVO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public Class getVOType() {
+        return UserVO.class;
     }
 }
