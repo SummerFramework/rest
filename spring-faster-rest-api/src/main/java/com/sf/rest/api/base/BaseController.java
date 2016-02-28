@@ -3,6 +3,7 @@ package com.sf.rest.api.base;
 import com.sf.rest.api.model.valueobject.ErrorMessageVO;
 import com.sf.rest.api.model.valueobject.ErrorVO;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
@@ -10,6 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
@@ -19,14 +21,18 @@ import java.util.List;
 /**
  * Created by renan on 27/02/16.
  */
+@RestController
 public class BaseController {
+
+    @Autowired
+    MessageI18nService messageI18nService;
 
     @ExceptionHandler({Exception.class})
     public ErrorVO exceptionHandler( HttpServletResponse response, Exception exception) {
 
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         List<ErrorMessageVO> messages = new ArrayList<>();
-        String details= "Problemas na requisição";
+        String details= messageI18nService.get("form.validation.error");
         Object target = null;
 
         if ( exception instanceof MethodArgumentNotValidException){

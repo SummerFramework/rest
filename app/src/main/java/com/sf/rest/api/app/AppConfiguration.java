@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import javax.sql.DataSource;
 
@@ -48,36 +51,24 @@ public class AppConfiguration {
             ds.setValidationQueryTimeout(5);
             ds.setDefaultQueryTimeout(5);
             ds.setTestOnBorrow(true);
-
-//            ComboPooledDataSource ds = new ComboPooledDataSource();
-
-//            if ( env.getProperty("spring.datasource.driver-class-name") != null ){
-//                ds.setDriverClass(env.getProperty("spring.datasource.driver-class-name"));
-//            }
-//
-//            ds.setJdbcUrl(env.getProperty("spring.datasource.url"));
-//            ds.setUser(env.getProperty("spring.datasource.username"));
-//            ds.setPassword(env.getProperty("spring.datasource.password").replace("EMPTY", "").trim());
-//
-//            ds.setIdleConnectionTestPeriod(60);
-//            ds.setTestConnectionOnCheckout(true);
-//            ds.setAcquireRetryDelay(200);
-//            ds.setAcquireRetryAttempts(5);
-//            ds.setCheckoutTimeout(10000);
-//
-//            ds.setMinPoolSize(Integer.valueOf(env.getProperty("spring.datasource.min-idle", "5")));
-//            ds.setMaxPoolSize((Integer.valueOf(env.getProperty("spring.datasource.max-active", "20"))));
-//            ds.setInitialPoolSize(Integer.valueOf(env.getProperty("spring.datasource.initial-size", "5")));
-//            ds.setPreferredTestQuery(env.getProperty("spring.datasource.validation-query", "SELECT 1"));
-//
-//            ds.setAcquireIncrement(5);
-
             return ds;
         }catch ( Exception e ){
             e.printStackTrace();
         }
 
         return null;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new CookieLocaleResolver();
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        lci.setParamName("lang");
+        return lci;
     }
 
     @Autowired
