@@ -1,4 +1,5 @@
 rootProject.name = 'spring-faster-rest-api'
-include 'spring-faster-rest-api'
+include 'rest-api'
 include 'app'
+include 'core'
 

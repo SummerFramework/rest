@@ -1,5 +1,5 @@
-group 'com.rbarbioni'
-version '1.0-SNAPSHOT'
+group 'org.summerframework'
+version '1.0.0-SNAPSHOT'
 
 subprojects {
 

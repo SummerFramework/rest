@@ -1,7 +1,7 @@
 package com.myapp.repository;
 
 import com.myapp.model.User;
-import com.sf.rest.api.data.BaseJpaRepository;
+import org.summerframework.core.data.BaseJpaRepository;
 
 /**
  * Created by renan on 23/02/16.

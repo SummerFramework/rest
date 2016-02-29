@@ -1,7 +1,7 @@
 package com.myapp.model.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sf.rest.api.model.valueobject.DomainVO;
+import org.summerframework.core.model.valueobject.DomainVO;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

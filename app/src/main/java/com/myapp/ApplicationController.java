@@ -3,7 +3,7 @@ package com.myapp;
 import com.myapp.model.Application;
 import com.myapp.model.valueobject.ApplicationVO;
 import com.myapp.repository.ApplicationRepository;
-import com.sf.rest.api.base.PageableController;
+import org.summerframework.rest.PageableController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

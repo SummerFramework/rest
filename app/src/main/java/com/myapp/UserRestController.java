@@ -3,7 +3,7 @@ package com.myapp;
 import com.myapp.model.User;
 import com.myapp.model.valueobject.UserVO;
 import com.myapp.repository.UserRepository;
-import com.sf.rest.api.base.BaseRestController;
+import org.summerframework.rest.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

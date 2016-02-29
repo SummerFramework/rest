@@ -1,7 +1,7 @@
 package com.myapp.model;
 
 import com.myapp.model.valueobject.UserVO;
-import com.sf.rest.api.model.DomainEntity;
+import org.summerframework.core.model.DomainEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

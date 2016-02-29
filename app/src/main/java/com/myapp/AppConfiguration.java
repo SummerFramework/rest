@@ -1,6 +1,5 @@
 package com.myapp;
 
-import com.sf.rest.api.data.BaseJpaRepositoryImp;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -16,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.summerframework.core.data.BaseJpaRepositoryImp;
 
 import javax.sql.DataSource;
 import java.util.Locale;
@@ -26,9 +26,9 @@ import java.util.Locale;
 
 @Configuration
 @EnableAutoConfiguration
-@EnableJpaRepositories(repositoryBaseClass = BaseJpaRepositoryImp.class, basePackages={"com.sf.rest.api.*","com.myapp.*"})
-@ComponentScan(basePackages={"com.sf.rest.api.*","com.myapp.*"})
-@EntityScan(basePackages = {"com.sf.rest.api.*","com.myapp.*"})
+@EnableJpaRepositories(repositoryBaseClass = BaseJpaRepositoryImp.class, basePackages={"org.summerframework.*","com.myapp.*"})
+@ComponentScan(basePackages={"org.summerframework.*","com.myapp.*"})
+@EntityScan(basePackages = {"org.summerframework.*","com.myapp.*"})
 @EnableTransactionManagement
 public class AppConfiguration {
 
