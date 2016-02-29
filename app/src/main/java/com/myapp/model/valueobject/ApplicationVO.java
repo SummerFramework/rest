@@ -11,8 +11,8 @@ import javax.validation.constraints.Size;
  */
 public class ApplicationVO extends DomainVO {
 
-    @Size(min = 3, max = 60, message = "{application.package_name.size.min.max}")
-    @NotNull(message = "{application.package_name.required}")
+    @Size(min = 3, max = 60, message = "application.package_name.size.min.max")
+    @NotNull(message = "application.package_name.required")
     @JsonProperty("package_name")
     private String packageName;
 
