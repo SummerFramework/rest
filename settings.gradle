@@ -1,5 +1,6 @@
-rootProject.name = 'spring-faster-rest-api'
-include 'rest-api'
-include 'app'
-include 'core'
+rootProject.name = 'summer-framework'
 
+include 'core'
+include 'rest-api'
+include 'hypermedia'
+include 'app'
