@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+//apply plugin: 'war'
+apply plugin: 'maven-publish'
+
+group = "org.summerframework"
+archivesBaseName = "summer-hypermedia"
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven { url "http://rbarbioni.com.br/artifactory/libs-snapshot-local" }
+    maven { url "http://rbarbioni.com.br/artifactory/libs-release-local" }
+
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    providedRuntime
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+}
+
+ext {
+    springVersion  = '4.2.5.RELEASE'
+    jacksonVersion = '2.6.5'
+}
+
+dependencies {
+    compile project(':core')
+    compile "org.springframework.data:spring-data-rest-webmvc:2.4.4.RELEASE"
+}
