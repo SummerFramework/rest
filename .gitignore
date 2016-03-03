@@ -68,8 +68,8 @@ build/
 # Ignore Gradle GUI config
 gradle-app.setting
 /spring-faster-rest-api.iml
-/summer-framework.iml
-/rest-api/rest-api.iml
+/gradle.properties
+/summer-framework.iml/rest-api/rest-api.iml
 /hypermedia/hypermedia.iml
 /classes
 /.idea
