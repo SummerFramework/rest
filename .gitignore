@@ -78,6 +78,9 @@ gradle-app.setting
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 
+/core/core.iml
+/rest-api/rest-api.iml
+/summer-framework.iml
 # Cache of project
 .gradletasknamecache
 
