@@ -1,6 +1,6 @@
 rootProject.name = 'summer-framework'
 
 include 'core'
-include 'rest-api'
 include 'hypermedia'
+include 'rest'
 include 'app'
