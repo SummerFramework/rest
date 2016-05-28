@@ -30,5 +30,4 @@ subprojects {
         springVersion  = '4.2.5.RELEASE'
         jacksonVersion = '2.6.5'
     }
-
 }
