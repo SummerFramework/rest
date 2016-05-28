@@ -3,4 +3,5 @@ rootProject.name = 'summer-framework'
 include 'core'
 include 'hypermedia'
 include 'rest'
-include 'app'
+findProject(':samples')?.name = 'rest'
+
