@@ -1,37 +1,30 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'maven'
-//apply plugin: 'war'
-apply plugin: 'maven-publish'
 
-group = "org.summerframework"
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom.withXml {
+                asNode().dependencies.'*'.findAll() {
+                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+                        dep.name == it.artifactId.text()
+                    }
+                }.each() {
+                    it.scope*.value = 'compile'
+                }
+            }
+        }
+    }
+}
+
+group = "com.github.summerframework"
 archivesBaseName = "rest"
 version = '1.0.0-SNAPSHOT'
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    jcenter()
-    maven { url "http://rbarbioni.com.br/artifactory/libs-snapshot-local" }
-    maven { url "http://rbarbioni.com.br/artifactory/libs-release-local" }
-
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-configurations {
-    providedRuntime
-}
-
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
-}
-
 dependencies {
-    compile project(':core')
+    compile 'com.github.summerframework:core:1.0.0-SNAPSHOT'
     compile "org.springframework:spring-web:$springVersion"
-
+    compile 'org.springframework.data:spring-data-jpa:1.10.1.RELEASE'
+    compile 'javax.validation:validation-api:1.1.0.Final'
 }

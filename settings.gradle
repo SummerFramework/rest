@@ -3,5 +3,7 @@ rootProject.name = 'summer-framework'
 include 'core'
 include 'hypermedia'
 include 'rest'
-findProject(':samples')?.name = 'rest'
+include 'samples'
+include 'samples/app-war'
+include 'core-web'
 

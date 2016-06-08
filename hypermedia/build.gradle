@@ -5,7 +5,7 @@ apply plugin: 'maven'
 //apply plugin: 'war'
 apply plugin: 'maven-publish'
 
-group = "org.summerframework"
+group = "com.github.summerframework"
 archivesBaseName = "hypermedia"
 version = '1.0.0-SNAPSHOT'
 

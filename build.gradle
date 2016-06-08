@@ -1,12 +1,40 @@
-group 'org.summerframework'
+group 'com.github.summerframework'
 version '1.0.0-SNAPSHOT'
 
-subprojects {
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '4.0.0')
+    }
+}
+
+allprojects {
 
     apply plugin: 'java'
-    apply plugin: 'eclipse'
     apply plugin: 'maven'
-    apply plugin: 'idea'
+    apply plugin: 'com.jfrog.artifactory'
+    apply plugin: 'maven-publish'
+
+    artifactory {
+        contextUrl = "${ARTIFACTORY_URL}"
+        publish {
+            repository {
+                repoKey = 'libs-snapshot-local'
+                username = "${ARTIFACTORY_USERNAME}"
+                password = "${ARTIFACTORY_PASSWORD}"
+            }
+            defaults {
+                publications('mavenJava')
+                publishArtifacts = true
+                publishPom = true
+            }
+        }
+        resolve {
+            repoKey = 'jcenter'
+        }
+    }
 
     repositories {
         mavenLocal()
@@ -21,6 +49,11 @@ subprojects {
         maven { url "http://repository.jspresso.org/maven2" }
         maven { url "http://repository.primefaces.org" }
         maven { url "https://github.com/slorber/gcm-server-repository/raw/master/releases/" }
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
     }
 
     sourceCompatibility = 1.8
