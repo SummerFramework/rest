@@ -17,7 +17,12 @@ public abstract class BaseRestController<E extends DomainEntity, VO extends Doma
 
     BaseService<E, VO> baseService;
 
+    public BaseRestController(){
+        super();
+    }
+
     public BaseRestController(BaseJpaRepository baseJpaRepository){
+        this();
         this.baseService = new BaseService<>(baseJpaRepository);
         this.baseService.setMessageI18nService(getMessageI18nService());
     }
